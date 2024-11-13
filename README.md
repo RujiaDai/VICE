@@ -14,8 +14,8 @@ You can install the development version of VICE from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("pak")
-pak::pak("RujiaDai/VICE")
+# # install.packages("devtools")
+devtools::install_github("RujiaDai/VICE")
 ```
 
 ## Example
