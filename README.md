@@ -8,6 +8,8 @@
 
 The goal of VICE is to calculate gene-level variability in single-cell or single-nuclei RNAseq data by constructing pseudo-replicates.
 
+<img src="CV calculation.png" width="50%" />
+
 ## Installation
 
 You can install the development version of VICE from
@@ -31,12 +33,5 @@ cvplot(cvlist, "s1", "c1")
 ```
 
 The parameter of VICE includes: the count matrix from sc/snRNAseq study `cmat` (gene by cell), the metadata of cells `cmeta` (cell by feature, "sample" and "celltype" must be provided), number of pseudo-replicates `k`.
-
-
-
-
-You can also embed plots, for example:
-
-<img src="CV calculation.png" width="100%" />
 
 The application of VICE on multiple sc/snRNAseq data can be found in <https://www.biorxiv.org/content/10.1101/2024.04.12.589216v1>.
