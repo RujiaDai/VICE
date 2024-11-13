@@ -24,7 +24,10 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(VICE)
-## basic example code
+data(cmat)
+data(cmeta)
+cvlist <- get_cv_for_replicates(cmeta, cmat, 3)
+cvplot(cvlist, "s1", "c1")
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?
