@@ -37,6 +37,6 @@ The parameter of VICE includes: the count matrix from sc/snRNAseq study `cmat` (
 
 You can also embed plots, for example:
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+<img src="CV calculation.png" width="100%" />
 
 The application of VICE on multiple sc/snRNAseq data can be found in <https://www.biorxiv.org/content/10.1101/2024.04.12.589216v1>.
