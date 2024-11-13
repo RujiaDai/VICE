@@ -8,7 +8,7 @@
 
 The goal of VICE is to calculate gene-level variability in single-cell or single-nuclei RNAseq data by constructing pseudo-replicates.
 
-<img src="CV calculation.png" width="30%" />
+<img src="CV calculation.png" width="40%" />
 
 ## Installation
 
