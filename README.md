@@ -6,7 +6,9 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of VICE is to …
+The goal of VICE is to calculate gene-level variability in single-cell or single-nuclei RNAseq data by constructing pseudo-replicates.
+
+<img src="CV calculation.png" width="40%" />
 
 ## Installation
 
@@ -14,39 +16,40 @@ You can install the development version of VICE from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("pak")
-pak::pak("RujiaDai/VICE")
+# # install.packages("devtools")
+devtools::install_github("RujiaDai/VICE")
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example of using VICE:
 
 ``` r
 library(VICE)
-## basic example code
+data(cmat)
+# cmat[1:6,1:6]
+#       Cell1 Cell2 Cell3 Cell4 Cell5 Cell6
+# Gene1    73     4     2    20    50     4
+# Gene2    29    17    36     7     0    19
+# Gene3    97   424   304   534   198   229
+# Gene4     1     4     3    16    11     3
+# Gene5   462   128   104    44    68    12
+# Gene6    31   150   381   561    67  1323
+
+data(cmeta)
+# head(cmeta)
+#       sample celltype
+# Cell1     s1       c1
+# Cell2     s1       c1
+# Cell3     s1       c1
+# Cell4     s1       c1
+# Cell5     s1       c1
+# Cell6     s1       c1
+
+cvlist <- get_cv_for_replicates(cmeta, cmat, 3)
+cvplot(cvlist, "s1", "c1")
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+The parameter of VICE includes: the count matrix from sc/snRNAseq study `cmat` (gene by cell), the metadata of cells `cmeta` (cell by feature, "sample" and "celltype" must be provided), number of pseudo-replicates `k`. Function `cvplot` can visualize the CV value in specific sample `s1` for specific cell type `c1`.
 
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+The application of VICE on multiple sc/snRNAseq data can be found in <https://www.biorxiv.org/content/10.1101/2024.04.12.589216v1>.
