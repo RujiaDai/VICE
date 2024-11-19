@@ -19,5 +19,5 @@ Caculating coefficient of variation
 library(VICE)
 data(cmat)
 data(cmeta)
-get_cv(cmat[1,])#calculate CV for the first gene
+get_cv(cmat[1, ]) # calculate CV for the first gene
 }

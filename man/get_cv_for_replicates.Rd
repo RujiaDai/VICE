@@ -23,5 +23,5 @@ calculate coefficient of variation (CV) values across pseudo-replicates in singl
 library(VICE)
 data(cmat)
 data(cmeta)
-cvlist<-get_cv_for_replicates(cmeta,cmat,3)
+cvlist <- get_cv_for_replicates(cmeta, cmat, 3)
 }

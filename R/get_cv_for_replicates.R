@@ -34,8 +34,8 @@ get_cv_for_replicates <- function(meta, counts, q) {
       } else {
         rawcounts <- counts[, meta$sample == sampleid & meta$celltype == cellid]
 
-        if (num > 3000) {
-          cnum <- c(1, 3, 5, 10, 30, 50, seq(100, 900, 100), seq(1000, num / 3, 1000))
+        if (num/q > 1000) {
+          cnum <- c(1, 3, 5, 10, 30, 50, seq(100, 900, 100), seq(1000, num / q, 1000))
           for (j in 1:length(cnum)) {
             print(cnum[[j]])
             rep[[j]] <- build_rep(rawcounts, cnum[[j]], q)
@@ -46,8 +46,8 @@ get_cv_for_replicates <- function(meta, counts, q) {
           }
         }
 
-        if (num > 300 & (num < 3000 | num == 3000)) {
-          cnum <- c(1, 3, 5, 10, 30, 50, seq(100, num / 3, 100))
+        if (num/q > 100 & (num/q < 1000 | num/q == 1000)) {
+          cnum <- c(1, 3, 5, 10, 30, 50, seq(100, num / q, 100))
           for (j in 1:length(cnum)) {
             print(cnum[[j]])
             rep[[j]] <- build_rep(rawcounts, cnum[[j]], q)
@@ -59,8 +59,8 @@ get_cv_for_replicates <- function(meta, counts, q) {
         }
 
 
-        if (num > 30 & (num < 300 | num == 300)) {
-          cnum <- c(1, 3, 5, seq(10, num / 3, 10))
+        if (num/q > 10 & (num/q < 100 | num/q == 100)) {
+          cnum <- c(1, 3, 5, seq(10, num / q, 10))
           for (j in 1:length(cnum)) {
             print(cnum[[j]])
             rep[[j]] <- build_rep(rawcounts, cnum[[j]], q)
@@ -71,8 +71,8 @@ get_cv_for_replicates <- function(meta, counts, q) {
           }
         }
 
-        if (num < 30 | num == 30) {
-          cnum <- seq(1, num / 3, 1)
+        if (num/q < 10 | num/q == 10) {
+          cnum <- seq(1, num / q, 1)
           for (j in 1:length(cnum)) {
             print(cnum[[j]])
             rep[[j]] <- build_rep(rawcounts, cnum[[j]], q)

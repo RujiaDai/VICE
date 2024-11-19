@@ -23,5 +23,5 @@ construct pseudo-replicates in single-cell data
 library(VICE)
 data(cmat)
 data(cmeta)
-psrep<-build_rep(cmat,100,3)
+psrep <- build_rep(cmat, 100, 3)
 }

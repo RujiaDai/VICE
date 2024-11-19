@@ -27,6 +27,6 @@ permutation test for CV
 library(VICE)
 data(cmat)
 data(cmeta)
-cvlist<-get_cv_for_replicates(cmeta,cmat,3)
-permcv<-get_perm(cmeta,cmat,cvlist,3,10)
+cvlist <- get_cv_for_replicates(cmeta, cmat, 3)
+permcv <- get_perm(cmeta, cmat, cvlist, 3, 10)
 }

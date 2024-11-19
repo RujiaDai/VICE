@@ -23,6 +23,6 @@ plot CV vs replicate size
 library(VICE)
 data(cmat)
 data(cmeta)
-cvlist<-get_cv_for_replicates(cmeta,cmat,3)
-cvplot(cvlist,"s1","c1")
+cvlist <- get_cv_for_replicates(cmeta, cmat, 3)
+cvplot(cvlist, "s1", "c1")
 }

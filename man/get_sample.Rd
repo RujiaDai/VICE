@@ -19,5 +19,5 @@ select sample with the largest number of cell
 library(VICE)
 data(cmat)
 data(cmeta)
-a=get_sample(cmeta)
+a <- get_sample(cmeta)
 }
