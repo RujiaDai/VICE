@@ -104,7 +104,7 @@ library(reshape2)
   meanfile$variable<-rownames(meanfile)
   meanfile$variable<-factor(meanfile$variable,levels=c("high","medium","low"))
 
-  ggplot(meanfile, aes(x=variable, y=mean, group=variable, color=variable)) +
+  g1<-ggplot(meanfile, aes(x=variable, y=mean, group=variable, color=variable)) +
     geom_point(position=position_dodge(0.05),size=4)+
     geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width=.2,
                   position=position_dodge(0.05))+
@@ -112,7 +112,8 @@ library(reshape2)
     labs(x='SNR',y='TPR')+
     scale_color_manual(values = c("#de2d26", "#fc9272","#fee0d2"))+
 	theme(legend.position='none')
-  output
+  print(g1)
+  return(output)
 }
 
 
