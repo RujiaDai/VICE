@@ -4,12 +4,14 @@
 \alias{get_tpr}
 \title{Estinate true positive rate of DE genes based on simulated data}
 \usage{
-get_tpr(ngene, nsample, de.prob, de.facloc, nperm)
+get_tpr(ngene, nsample, ncell, de.prob, de.facloc, nperm)
 }
 \arguments{
 \item{ngene}{: number of genes}
 
 \item{nsample}{: number of samples in each DE group}
+
+\item{ncell}{: number of cells per sample}
 
 \item{de.prob}{: DE probability}
 
@@ -25,5 +27,5 @@ Estinate true positive rate of DE genes based on simulated data
 }
 \examples{
 library(VICE)
-test<-get_tpr(ngene=500,nsample=3,de.prob=0.2,de.facloc=0.05,nperm=5)
+test<-get_tpr(ngene=1000,ncell=100,nsample=3,de.prob=0.2,de.facloc=0.05,nperm=5)
 }
