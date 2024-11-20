@@ -112,8 +112,8 @@ library(reshape2)
     labs(x='SNR',y='TPR')+
     scale_color_manual(values = c("#de2d26", "#fc9272","#fee0d2"))+
 	theme(legend.position='none')
-  print(g1)
-  return(output)
+print(g1)
+return(output)
 }
 
 
