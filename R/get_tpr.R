@@ -74,7 +74,7 @@ library(reshape2)
 
       de1<-de1[match(gene$Gene,rownames(de1)),]
 
-      cv<-apply(psdf[,1:nsample],1,getcv)
+      cv<-apply(psdf[,1:3],1,getcv)
       de1<-de1[!is.na(cv),]
       gene<-gene[!is.na(cv),]
       gene$cv<-cv[!is.na(cv)]
