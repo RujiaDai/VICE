@@ -19,7 +19,6 @@ build_rep <- function(counts, m, q) {
   while (k <= q) {
     fz <- sample(index, m, replace = FALSE, prob = NULL)
     counts_fz <- counts[, fz]
-    # sample_meta_fz=sample_meta[fz,]
     if (m >= 2) {
       replicate_i <- apply(counts_fz, 1, sum)
       replicate_list <- cbind(replicate_list, replicate_i)

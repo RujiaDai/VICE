@@ -4,7 +4,15 @@
 \alias{get_tpr}
 \title{Estinate true positive rate of DE genes based on simulated data}
 \usage{
-get_tpr(ngene, nsample, ncell, de.prob, de.facloc, nperm)
+get_tpr(
+  ngene = 2000,
+  nsample = 3,
+  ncell = 100,
+  de.prob = 0.3,
+  de.facloc = 0.1,
+  de.facScale = 0.1,
+  nperm = 10
+)
 }
 \arguments{
 \item{ngene}{: number of genes}
@@ -15,7 +23,9 @@ get_tpr(ngene, nsample, ncell, de.prob, de.facloc, nperm)
 
 \item{de.prob}{: DE probability}
 
-\item{de.facloc}{: Differential expression factors are produced from a log-normal distribution. Changing these parameters can result in more or less extreme differences between groups.}
+\item{de.facloc}{: Location (meanlog) parameter for the differential expression factor log-normal distribution. Changing these parameters can result in more or less extreme differences between groups.}
+
+\item{de.facScale}{: Scale (sdlog) parameter for the differential expression factor log-normal distribution. Changing these parameters can result in more or less extreme differences between groups.}
 
 \item{nperm}{: iteration times}
 }
@@ -27,5 +37,5 @@ Estinate true positive rate of DE genes based on simulated data
 }
 \examples{
 library(VICE)
-test<-get_tpr(ngene=1000,ncell=100,nsample=3,de.prob=0.2,de.facloc=0.05,nperm=5)
+test <- get_tpr(ngene = 2000, ncell = 100, nsample = 3, de.prob = 0.3, de.facScale = 0.1, de.facloc = 0.1, nperm = 10)
 }
