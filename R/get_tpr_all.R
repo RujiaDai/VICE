@@ -9,13 +9,13 @@
 
 #' @param nperm : iteration times
 #'
-#' @return TPR of DE analysis, grouped by SNR
+#' @return Overall TPR of DE analysis
 #' @export
 #'
 #' @examples
 #' library(VICE)
-#' test <- get_tpr(ngene = 2000, ncell = 100, nsample = 3, de.prob = 0.3, de.facScale = 0.1, de.facloc = 0.1, nperm = 10)
-get_tpr <- function(ngene = 2000, nsample = 3, ncell = 100, de.prob = 0.3, de.facloc = 0.1, de.facScale = 0.1, nperm = 10) {
+#' test <- get_tpr_all(ngene = 2000, ncell = 100, nsample = 3, de.prob = 0.3, de.facScale = 0.1, de.facloc = 0.1, nperm = 10)
+get_tpr_all <- function(ngene = 2000, nsample = 3, ncell = 100, de.prob = 0.3, de.facloc = 0.1, de.facScale = 0.1, nperm = 10) {
   library(splatter)
   library(scater)
   library(edgeR)
@@ -91,43 +91,13 @@ get_tpr <- function(ngene = 2000, nsample = 3, ncell = 100, de.prob = 0.3, de.fa
     snr <- norm(abs(de1$logFC)) / norm(gene$cv)
     stat <- cbind(gene, de1)
     stat$snr <- snr
-
-
-    t1 <- subset(stat, DEFacGroup1 != 1 & DEFacGroup2 != 1 & (snr == 1 | snr > 1) & snr < 2)$Gene
-    t2 <- subset(stat, FDR < 0.05 & (snr == 1 | snr > 1) & snr < 2)$Gene
+    t1 <- subset(stat, DEFacGroup1 != 1 & DEFacGroup2 != 1)$Gene
+    t2 <- subset(stat, FDR < 0.05)$Gene
     TPR[[z]] <- length(intersect(t1, t2)) / length(t1)
-
-    t3 <- subset(stat, DEFacGroup1 != 1 & DEFacGroup2 != 1 & (snr > 2 | snr == 2))$Gene
-    t4 <- subset(stat, FDR < 0.05 & (snr > 2 | snr == 2))$Gene
-    TPR_h[[z]] <- length(intersect(t4, t3)) / length(t3)
-
-    t5 <- subset(stat, DEFacGroup1 != 1 & DEFacGroup2 != 1 & snr > 0 & snr < 1)$Gene
-    t6 <- subset(stat, FDR < 0.05 & snr > 0 & snr < 1)$Gene
-    TPR_l[[z]] <- length(intersect(t5, t6)) / length(t5)
 
     print(z)
   }
-  output <- data.frame(high = unlist(TPR_h), medium = unlist(TPR), low = unlist(TPR_l))
-  meanfile <- data.frame(cbind(apply(output, 2, function(x) {
-    mean(x, na.rm = T)
-  }), apply(output, 2, function(x) {
-    sd(x, na.rm = T)
-  })))
-  colnames(meanfile) <- c("mean", "sd")
-  meanfile$variable <- rownames(meanfile)
-  meanfile$variable <- factor(meanfile$variable, levels = c("high", "medium", "low"))
-
-  g1 <- ggplot(meanfile, aes(x = variable, y = mean, group = variable, color = variable)) +
-    geom_point(position = position_dodge(0.05), size = 4) +
-    geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd),
-      width = .2,
-      position = position_dodge(0.05)
-    ) +
-    ggpubr::theme_pubclean() +
-    ylim(0, 1) +
-    labs(x = "SNR", y = "TPR") +
-    scale_color_manual(values = c("#de2d26", "#fc9272", "#fee0d2")) +
-    theme(legend.position = "none")
-  print(g1)
+  output <- unlist(TPR)
   return(output)
+  print(paste("The averaged TPR is", mean(output)))
 }
