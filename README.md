@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of VICE is to calculate gene-level variability in single-cell or single-nuclei RNAseq data by constructing pseudo-replicates.
+The goal of VICE is to calculate gene-level variability in single-cell or single-nuclei RNAseq data by constructing pseudo-replicates. VICE also can estimate the true positive rate of differential gene expression analysis for genes with different level of signal-to-noise level. 
 
 <img src="CV calculation.png" width="40%" />
 
