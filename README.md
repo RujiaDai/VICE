@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-VICE calculates gene-level variability in single-cell or single-nuclei RNA-seq data by constructing pseudo-replicates. Additionally, it can estimate the true positive rate of single-cell differential gene expression (DE) analysis for genes with varying signal-to-noise levels.
+VICE calculates gene-level variability in single-cell or single-nuclei RNA-seq data by constructing pseudo-replicates. Additionally, it can estimate the true positive rate (TPR) of single-cell differential gene expression (DE) analysis for genes with varying signal-to-noise ratio (SNR) levels.
 
 <img src="CV calculation.png" width="40%" />
 
@@ -53,13 +53,14 @@ The parameter includes: the count matrix from sc/snRNAseq study `cmat` (gene by 
 ## Example #2: estimate true positive rate for single-cell DE analysis
 ``` r
 library(VICE)
-
+#estimate overall TPR based on all tested genes
 tpr_all<-get_tpr_all(ngene=2000,ncell=500,nsample=3,de.prob=0.3,de.facloc=0.1,de.facScale=0.1,nperm=10)
 
 tpr_all
 # [1] 0.7030303 0.7979275 0.7350000 0.6964286 0.6973684 0.7784091 0.7606383 0.7187500 0.7041420
 # [10] 0.7615894
 
+#estimate TPR for genes with different level of SNR
 tpr<-get_tpr(ngene=2000,ncell=500,nsample=3,de.prob=0.3,de.facloc=0.1,de.facScale=0.1,nperm=10)
 
 tpr
