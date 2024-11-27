@@ -75,10 +75,10 @@ tpr
 # 9  0.9636364 0.6923077 0.16279070
 # 10 0.8976378 0.4500000 0.00000000
 ```
-[R package `splatter` was used for data simulation.](https://oshlacklab.com/splatter/reference/SplatParams.html)
+R package [`splatter`](https://oshlacklab.com/splatter/reference/SplatParams.html) was used for data simulation.
 The parameter includes: number of genes `ngene`, number of cells per sample `ncell`, number of samples in each DE group `nsample`, probability that a gene is differentially expressed in a group`de.prob`, Location (meanlog) parameter for the differential expression factor log-normal distribution `de.facloc`, Scale (sdlog) parameter for the differential expression factor log-normal distribution `de.facScale`, iteration times `nperm`. 
 
-<img src="cv_example_TPR.png" width="30%" />
+<img src="example_tpr.png" width="30%" />
 
 
 
